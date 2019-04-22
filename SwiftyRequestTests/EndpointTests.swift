@@ -78,8 +78,8 @@ class EndpointTests: XCTestCase {
   }
   
   func testEndpoint_CreatesQueryUrl_WithConvenienceFunctions() {
-    let queryColor = URLQueryItem.partialInit(key: "color")
-    let querySize = URLQueryItem.partialInit(key: "size")
+    let queryColor = Query.partialInit(key: "color")
+    let querySize = Query.partialInit(key: "size")
     
     let expectedUrl = "https://www.myapi.com/api/v1/users?color=red&size=small"
     
@@ -93,4 +93,38 @@ class EndpointTests: XCTestCase {
     XCTAssertEqual(expectedUrl, endpoint.description)
   }
   
+  func testEndpoint_CreatesNewEndpoint_AfterAppendingNewQuery() {
+    let expectedBase = "https://www.myapi.com/api/v1/users"
+    let expectedUrl = "https://www.myapi.com/api/v1/users?name=steven"
+    
+    let baseEndpoint = Endpoint { base in
+      base.protocol = .https
+      base.host = "www.myapi.com"
+      base.pathComponents = ["api", "v1", "users"]
+    }
+    
+    let queryEndpoint = baseEndpoint.appending(query: Query(name: "name", value: "steven"))
+    
+    XCTAssertEqual(expectedBase, baseEndpoint.description)
+    XCTAssertEqual(expectedUrl, queryEndpoint.description)
+  }
+  
+  func testEndpoint_CreatesNewEndpointWithAdditionalQueries_AfterAppendingNewQueries() {
+    let expectedBase = "https://www.myapi.com/api/v1/users?name=steven"
+    let expectedUrl = "https://www.myapi.com/api/v1/users?name=steven&haircolor=red&pets=true"
+    
+    let baseEndpoint = Endpoint { base in
+      base.protocol = .https
+      base.host = "www.myapi.com"
+      base.pathComponents = ["api", "v1", "users"]
+      base.queryItems = [Query(name: "name", value: "steven")]
+    }
+    
+    let queryEndpoint = baseEndpoint.appending(queries:
+      [URLQueryItem(name: "haircolor", value: "red"), Query(name: "pets", value: "true")]
+    )
+    
+    XCTAssertEqual(expectedBase, baseEndpoint.description)
+    XCTAssertEqual(expectedUrl, queryEndpoint.description)
+  }
 }

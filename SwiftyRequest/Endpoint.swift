@@ -49,9 +49,21 @@ public extension Endpoint {
   func appending(pathComponent: String) -> Endpoint {
     return appending(pathComponents: [pathComponent])
   }
+  
+  func appending(queries: [Query]) -> Endpoint {
+    var copy = self
+    copy.queryItems == nil ? copy.queryItems = queries : copy.queryItems?.append(contentsOf: queries)
+    return copy
+  }
+  
+  func appending(query: Query) -> Endpoint {
+    return appending(queries: [query])
+  }
 }
 
-public extension URLQueryItem {
+public typealias Query = URLQueryItem
+
+public extension Query {
   static func partialInit(key: String) -> (String) -> URLQueryItem {
     return { value in
       URLQueryItem(name: key, value: value)
