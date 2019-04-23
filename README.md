@@ -1,5 +1,5 @@
 # SwiftyRequest
-
+[![Build Status](https://travis-ci.org/Steven0351/SwiftyRequest.svg?branch=master)](https://travis-ci.org/Steven0351/SwiftyRequest)
 ### These are some HTTP related helpers that I like to use when building out network communication managers. This is not meant to be a complete solution for all networking needs: it just adds some additional goodies on top of existing Foundation types, plus support for very minimal Futures ( which was wholesale taken from a John Sundell blog post).
 
 #### Note: I'm not supporting anything outside of my own use. As such, you will notice things like the TransportProtocol enum:
