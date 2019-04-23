@@ -70,4 +70,4 @@ let peopleRequest = Request(endpoint: peopleEndpoint)
 ```
 
 ### Futures
-The futures implementation was completely taken from John Sundell's blog post [Under the Hood of Futures and Promises in Swift](https://www.swiftbysundell.com/posts/under-the-hood-of-futures-and-promises-in-swift). Rather than rehashing the details here, just read that blog post. My only change was making the URLSession extension `request(_:)` function was making it generic over `Decodable` to return a concrete type, rather than have it return `Future<Data>` by default.
+The futures implementation was completely taken from John Sundell's blog post [Under the Hood of Futures and Promises in Swift](https://www.swiftbysundell.com/posts/under-the-hood-of-futures-and-promises-in-swift). Rather than rehashing the details here, just read that blog post. My only change was making the URLSession extension `request(_:)` function generic over `Decodable` to return a value that needs no further processing rather than have it return `Future<Data>` by default.
