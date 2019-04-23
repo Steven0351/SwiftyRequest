@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		625AD226226D6AF400AAA261 /* FutureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625AD225226D6AF400AAA261 /* FutureTests.swift */; };
+		625AD228226E93AE00AAA261 /* FatalError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625AD227226E93AE00AAA261 /* FatalError.swift */; };
+		625AD22A226E94F000AAA261 /* XCTestCase+FatalError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625AD229226E94F000AAA261 /* XCTestCase+FatalError.swift */; };
 		626000CA22695FA8002E269A /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626000C922695FA8002E269A /* Endpoint.swift */; };
 		626000CE22697573002E269A /* RequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626000CD22697573002E269A /* RequestTests.swift */; };
 		626000D0226AAC88002E269A /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626000CF226AAC88002E269A /* Future.swift */; };
@@ -31,6 +33,8 @@
 
 /* Begin PBXFileReference section */
 		625AD225226D6AF400AAA261 /* FutureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureTests.swift; sourceTree = "<group>"; };
+		625AD227226E93AE00AAA261 /* FatalError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FatalError.swift; sourceTree = "<group>"; };
+		625AD229226E94F000AAA261 /* XCTestCase+FatalError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FatalError.swift"; sourceTree = "<group>"; };
 		626000C922695FA8002E269A /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		626000CD22697573002E269A /* RequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTests.swift; sourceTree = "<group>"; };
 		626000CF226AAC88002E269A /* Future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.swift; sourceTree = "<group>"; };
@@ -92,6 +96,7 @@
 				626000CF226AAC88002E269A /* Future.swift */,
 				62AA8183226AB4B400E4E984 /* URLSession+Request.swift */,
 				62AA8185226AB4F500E4E984 /* RequestError.swift */,
+				625AD227226E93AE00AAA261 /* FatalError.swift */,
 			);
 			path = SwiftyRequest;
 			sourceTree = "<group>";
@@ -103,6 +108,7 @@
 				62B93C9D225ECC740016E909 /* Info.plist */,
 				626000CD22697573002E269A /* RequestTests.swift */,
 				625AD225226D6AF400AAA261 /* FutureTests.swift */,
+				625AD229226E94F000AAA261 /* XCTestCase+FatalError.swift */,
 			);
 			path = SwiftyRequestTests;
 			sourceTree = "<group>";
@@ -219,6 +225,7 @@
 				626000D0226AAC88002E269A /* Future.swift in Sources */,
 				62AA8186226AB4F500E4E984 /* RequestError.swift in Sources */,
 				626000CA22695FA8002E269A /* Endpoint.swift in Sources */,
+				625AD228226E93AE00AAA261 /* FatalError.swift in Sources */,
 				62AA8184226AB4B400E4E984 /* URLSession+Request.swift in Sources */,
 				62B93CA8225EF0580016E909 /* Request.swift in Sources */,
 			);
@@ -230,6 +237,7 @@
 			files = (
 				62B93C9C225ECC740016E909 /* EndpointTests.swift in Sources */,
 				626000CE22697573002E269A /* RequestTests.swift in Sources */,
+				625AD22A226E94F000AAA261 /* XCTestCase+FatalError.swift in Sources */,
 				625AD226226D6AF400AAA261 /* FutureTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

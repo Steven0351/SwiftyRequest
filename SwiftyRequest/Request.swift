@@ -11,8 +11,8 @@ import Foundation
 public typealias Request = URLRequest
 
 public extension Request {
-  init?(endpoint: Endpoint, _ configBlock: ((inout Request) -> ())? = nil) {
-    guard let url = endpoint.url else { return nil }
+  init(endpoint: Endpoint, _ configBlock: ((inout Request) -> ())? = nil) {
+    guard let url = endpoint.url else { fatalError("endpoint does not synthesize a valid url") }
     self.init(url: url)
     configBlock?(&self)
   }

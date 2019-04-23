@@ -51,15 +51,16 @@ class RequestTests: XCTestCase {
     XCTAssertEqual(urlRequest, request)
   }
   
-  func test_RequestIsNil_whenEndpointIsMisconfigured() {
+  func test_RequestThrowsFatalError_whenEndpointIsMisconfigured() {
     let endpoint = Endpoint { endpoint in
       endpoint.protocol = .https
       endpoint.host = "google.com"
       endpoint.path = "auth/login"
     }
-    let request = Request(endpoint: endpoint)
     
-    XCTAssertNil(request)
+    expectFatalError(expectedMessage: "endpoint does not synthesize a valid url") {
+      _ = Request(endpoint: endpoint)
+    }
   }
   
   func test_RequestMethodReturnsDotPut_whenHttpMethodSetDirectly() {
@@ -68,7 +69,7 @@ class RequestTests: XCTestCase {
       request.httpMethod = "PUT"
     }
     
-    XCTAssertEqual(request!.method, .put)
+    XCTAssertEqual(request.method, .put)
   }
   
   func test_RequestMethodReturnsNil_whenHttpMethodSetWithUnsupportedMethod() {
@@ -77,14 +78,14 @@ class RequestTests: XCTestCase {
       request.httpMethod = "HEAD"
     }
     
-    XCTAssertNil(request?.method)
+    XCTAssertNil(request.method)
   }
   
   func test_RequestMethodReturnsdoGet_whenHttpMethodNotSet() {
     let endpoint = Endpoint { _ in }
     let request = Request(endpoint: endpoint)
     
-    XCTAssertEqual(request!.method, .get)
+    XCTAssertEqual(request.method, .get)
   }
   
   func test_RequestHeaderFields_whenUsingSetMethod() {
@@ -99,7 +100,7 @@ class RequestTests: XCTestCase {
       request.set(value: "Bearer ==wqeoriuj943ru8sajdf", for: .authorization)
     }
     
-    XCTAssertEqual(request!.headerFields, [.authorization: "Bearer ==wqeoriuj943ru8sajdf"])
+    XCTAssertEqual(request.headerFields, [.authorization: "Bearer ==wqeoriuj943ru8sajdf"])
   }
   
   func test_addValueSetsAuthorization_whenAuthorizationIsNotSet() {
@@ -114,7 +115,7 @@ class RequestTests: XCTestCase {
       request.add(value: "Bearer ==wqeoriuj943ru8sajd9", for: .authorization)
     }
     
-    XCTAssertEqual(request!.value(for: .authorization), "Bearer ==wqeoriuj943ru8sajd9")
+    XCTAssertEqual(request.value(for: .authorization), "Bearer ==wqeoriuj943ru8sajd9")
   }
   
 }
