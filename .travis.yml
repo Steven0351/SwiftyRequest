@@ -4,14 +4,11 @@ env:
   global:
     - FRAMWORK_NAME=SwiftyRequest
 before_install:
-- gem install fastlane git-version-bump
+- gem install fastlane
 - brew update
 - brew outdated carthage || brew upgrade carthage
 script:
 - fastlane scan
-- git config --local user.name "Steven0351-MachineUser"
-- git config --local user.email "steven0351.machineuser@gmail.com"
-- git version-bump patch
 before_deploy:
 - carthage build --no-skip-current
 - carthage archive $FRAMEWORK_NAME
