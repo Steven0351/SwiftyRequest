@@ -1,6 +1,26 @@
 osx_image: xcode10.2
 language: swift
+env:
+  global:
+    - FRAMWORK_NAME=SwiftyRequest
 before_install:
-- gem install fastlane
+- gem install fastlane git-version-bump
+- brew update
+- brew outdated carthage || brew upgrade carthage
 script:
 - fastlane scan
+before_deploy:
+  - carthage build --no-skip-current
+  - carthage archive $FRAMEWORK_NAME
+  - git config --local user.name "Steven0351-MachineUser"
+  - git config --local user.email "steven0351.machineuser@gmail.com"
+  - git version-bump patch
+deploy:
+  provider: releases
+  api_key:
+    secure: R946QUiFQtAiy1MbT+QS+40tTHiP26QA/xtespgKsrPlxNarmUH4eqTHZZqILaI7SmPpPwKicyb8Hodx6OcJAQ3+iorGr2A8BKr0+KQfe2QrPeqFB0/+pJ/ZcQt8PF1hANKF5VXZ8lJkhnA0/PGk8etvsrR9vA7i62FkDs2zhIvnCTmcJ4gAc8qc7NgyPQ56ezmhtL3kP7Zq5Lu7mPIwVZtqnbuCBwYkQjFWfJevzyFoL24EgHsyNM4v2clUcs5lmBzK8VPwPgH9WYBuH/jfJbxRkFHc5Gfa5rYxvQS4rWg8B01E2GSrcTU81o43+efbo8aoMdiNWXg5RlbTS8gaEIAuTPX0Njpy1vrGDroMm86wNdSVJVUepmAStVoxbvSBQpoKwqyLni3QfIdOtfUXv6GtGrYL+xAG1nhG+bBZ/TWjQ7FHPOvThXtjoTIiaBGlerh/zNFDQymNmnh4Omg0QzdyXz5D3KISu61LH7SwACbCUXXvUQdIKNkcC2XeRqj+i94M9juhJSb/O2iX3iCP+I/+zxqoJJanKEcZ3kgHUrFVEXfTqbd4hiOwFsiKw1AtAPS1cC4F2XQtvdORhyv3pNcYSoaM17LZTYcXm+Baua8UDWoYhjl74Yr1rI8zjKCo9q3F+wL5aOw+yKg6z5v2SA8s8sZu3dR+zn71zkDmgTY=
+  file: "$FRAMEWORK_NAME.framework.zip"
+  skip_cleanup: true
+  on:
+    repo: Steven0351/SwiftyRequest
+    tags: true
