@@ -2,7 +2,7 @@ osx_image: xcode10.2
 language: swift
 env:
   global:
-    - FRAMWORK_NAME=SwiftyRequest
+    - FRAMEWORK_NAME=SwiftyRequest
 before_install:
 - gem install fastlane
 - brew update
