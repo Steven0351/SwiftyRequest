@@ -6,7 +6,7 @@
 //  Copyright © 2019 Steven Sherry. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for SwiftyRequest.
 FOUNDATION_EXPORT double SwiftyRequestVersionNumber;
