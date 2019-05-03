@@ -28,7 +28,7 @@ public extension Request {
   
   var headerFields: [Header: String]? {
     get {
-      return allHTTPHeaderFields.flatMap { dictionary in
+      return allHTTPHeaderFields.map { dictionary in
         Dictionary(uniqueKeysWithValues: dictionary.compactMap { key, value in
           guard let key = Header(rawValue: key) else { return nil }
           return (key, value)
