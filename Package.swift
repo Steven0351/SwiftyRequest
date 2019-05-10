@@ -4,9 +4,9 @@ import Foundation
 
 func sources(at relativePath: String) -> [String] {
   let currentDirectory = String(cString: getenv("PWD"))
-    return try! FileManager.default
-      .contentsOfDirectory(atPath: "\(currentDirectory)/\(relativePath)")
-      .filter { $0.contains(".swift") }
+  return try! FileManager.default
+    .contentsOfDirectory(atPath: "\(currentDirectory)/\(relativePath)")
+    .filter { $0.contains(".swift") }
 }
 
 let librarySources = sources(at: "SwiftyRequest")
