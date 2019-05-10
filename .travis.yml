@@ -9,6 +9,7 @@ before_install:
 - brew outdated carthage || brew upgrade carthage
 script:
 - fastlane scan
+- swift test
 before_deploy:
 - carthage build --no-skip-current
 - carthage archive $FRAMEWORK_NAME
