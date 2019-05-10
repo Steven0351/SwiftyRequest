@@ -1,6 +1,6 @@
 # SwiftyRequest
-[![Build Status](https://travis-ci.org/Steven0351/SwiftyRequest.svg?branch=master)](https://travis-ci.org/Steven0351/SwiftyRequest)
-### These are some HTTP related helpers that I like to use when building out network communication managers. This is not meant to be a complete solution for all networking needs: it just adds some additional goodies on top of existing Foundation types, plus support for very minimal Futures ( which was wholesale taken from a John Sundell blog post).
+[![Build Status](https://travis-ci.org/Steven0351/SwiftyRequest.svg?branch=master)](https://travis-ci.org/Steven0351/SwiftyRequest) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) ![swift-package-manager](https://img.shields.io/badge/SPM-compatible-orange.svg) ![platforms](https://img.shields.io/badge/Platform-iOS%20|%20macOS-lightgrey.svg) ![swift-version](https://img.shields.io/badge/Swift-5.0-orange.svg) ![license](https://img.shields.io/badge/License-MIT-c41d3a.svg)
+### These are some HTTP related helpers that I like to use when building out network communication managers. This is not meant to be a complete solution for all networking needs: it just adds some additional goodies on top of existing Foundation types, plus support for very minimal Futures (which was wholesale taken from a John Sundell blog post).
 
 #### Note: I'm not supporting anything outside of my own use. As such, you will notice things like the TransportProtocol enum:
 ```swift
@@ -30,7 +30,7 @@ let base: URLComponents = {
   return components
 }()
 ```
-I personally like to omit the creation of a local variable and then returning it at the end. I prefer the former because I get a clean declarative block.
+I prefer to have a clean declarative block instead of creating a local variable and then returning it at the end. There is nothing inherently wrong with that approach, but when possible I prefer to omit anything that may distract from what is going on at the callsite.
 
 I've found that in most cases, endpoints that I need to fetch data from are typically unchanged except from a path here or a query parameter there. (Note: `Query` is a typealias for `URLQueryItem`)
 ```swift
@@ -41,7 +41,7 @@ let peopleWithBlackHairEndpoint = peopleEndpoint.appending(query:
 )
 // https://somewebservice.com/api/v1/people?haircolor=black
 ```
-Query values are oftentimes supplied by the user. You could manage query names in a constants file or an enum, and initialize a URLQueryItem using one of those predefined keys and allow the user defined input as the value. However, I prefer to take inspiration from strict functional languages and utilize something called "Partial Application". Partial Application is a concept in many functional languages that allow you to pass fewer parameters than the function takes, and it returns a function that takes the remaining parameters and returns what the original function intended. Swift does not support this natively, so to achieve a similar result I've added a static function on `Query`/`URLQueryItem` called `partialInit(name:)` that returns `(String) -> Query`:
+Query values are oftentimes supplied by the user. You could manage query names in a constants file or an enum, and initialize a URLQueryItem using one of those predefined keys and allow the user defined input as the value. However, I've taken some inspiration from functional languages and utilize something called "Partial Application". Partial Application is a concept in functional languages that are curried by default which allows you to pass fewer parameters than the function takes. The result is a function that takes the remaining parameters and returns what the original function intended. Swift does not support this natively, so to achieve a similar result I've added a static function on `Query`/`URLQueryItem` called `partialInit(name:)` that returns `(String) -> Query`:
 ```swift
 let queryHairColor = Query.partialInit(name: "haircolor")
 ...
