@@ -13,6 +13,7 @@ script:
 before_deploy:
 - carthage build --no-skip-current
 - carthage archive $FRAMEWORK_NAME
+- mv $FRAMEWORK_NAME.framework.zip $FRAMEWORK_NAME-$TRAVIS_TAG.framework.zip
 deploy:
   provider: releases
   api_key:
