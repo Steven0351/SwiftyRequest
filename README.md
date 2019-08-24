@@ -1,6 +1,6 @@
 # SwiftyRequest
 [![Build Status](https://travis-ci.org/Steven0351/SwiftyRequest.svg?branch=master)](https://travis-ci.org/Steven0351/SwiftyRequest) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) ![swift-package-manager](https://img.shields.io/badge/SPM-compatible-orange.svg) ![platforms](https://img.shields.io/badge/Platform-iOS%20|%20macOS-lightgrey.svg) ![swift-version](https://img.shields.io/badge/Swift-5.0-orange.svg) ![license](https://img.shields.io/badge/License-MIT-c41d3a.svg)
-### These are some HTTP related helpers that I like to use when building out network communication managers. This is not meant to be a complete solution for all networking needs: it just adds some additional goodies on top of existing Foundation types, plus support for very minimal Futures (which was wholesale taken from a John Sundell blog post).
+### These are some HTTP related helpers that I like to use when building out network communication managers. This is not meant to be a complete solution for all networking needs: it just adds some additional goodies on top of existing Foundation types.
 
 #### Note: I'm not supporting anything outside of my own use. As such, you will notice things like the TransportProtocol enum:
 ```swift
@@ -69,5 +69,3 @@ A simple GET request that requires no authentication is as simple as
 let peopleRequest = Request(endpoint: peopleEndpoint)
 ```
 
-### Futures
-The futures implementation was completely taken from John Sundell's blog post [Under the Hood of Futures and Promises in Swift](https://www.swiftbysundell.com/posts/under-the-hood-of-futures-and-promises-in-swift). Rather than rehashing the details here, just read that blog post. My only change was making the URLSession extension `request(_:)` function generic over `Decodable` to return a value that needs no further processing rather than have it return `Future<Data>` by default.
