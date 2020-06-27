@@ -65,5 +65,6 @@ public extension Request {
   enum Header: String {
     case authorization = "Authorization"
     case contentType = "Content-Type"
+    case accept = "Accept"
   }
 }

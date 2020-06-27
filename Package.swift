@@ -4,6 +4,7 @@ import Foundation
 
 let package = Package(
   name: "SwiftyRequest",
+  platforms: [.iOS(.v12), .macOS(.v10_14), .watchOS(.v3)],
   products: [
     .library(name: "SwiftyRequest", targets: ["SwiftyRequest"])
   ],
